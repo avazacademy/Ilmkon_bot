@@ -1,0 +1,23 @@
+ruyxatdan utish:
+    ishtirokchi familiya
+    ishtirokchi ism
+    ishtirokchisharifi
+    jinsi
+    tg yil
+    aloqa uchun raqam faqat uzb
+    viloyat 
+    tuman
+    maktab
+    sinf
+    qaysi fan tanlov qatnashish
+    uqitish tili
+    ---------------------
+
+realedu.uzb
+
+
+Botni nomi:
+    Zukko matimatik
+    ilmkon logo va zukko matimatik rasmi
+    
+
