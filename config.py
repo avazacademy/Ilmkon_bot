@@ -42,4 +42,10 @@ if GROUP_ID:
     except ValueError:
         pass
 
+# Database URL (PostgreSQL uchun)
+# Format: postgresql+asyncpg://user:password@host:port/dbname
+# Agar DATABASE_URL berilmagan bo'lsa yoki bo'sh bo'lsa, SQLite ishlatiladi
+# Bu qiymat database/models.py da bazani tanlash uchun ishlatiladi
+DATABASE_URL = os.getenv("DATABASE_URL")
+
 # Agar boshqa sozlamalar kerak bo'lsa shu yerga qo'shing
