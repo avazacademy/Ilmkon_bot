@@ -1,9 +1,18 @@
+import os
 from sqlalchemy import BigInteger, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
 
-# Baza fayli
-engine = create_async_engine(url='sqlite+aiosqlite:///db.sqlite3')
+# Import DATABASE_URL from config
+from config import DATABASE_URL
+
+# Bazani sozlash: agar DATABASE_URL berilgan bo'lsa PostgreSQL, aks holda SQLite
+if DATABASE_URL and DATABASE_URL.strip():
+    # PostgreSQL bilan ishlash
+    engine = create_async_engine(url=DATABASE_URL)
+else:
+    # SQLite bilan ishlash (fallback)
+    engine = create_async_engine(url='sqlite+aiosqlite:///db.sqlite3')
 
 async_session = async_sessionmaker(engine)
 
