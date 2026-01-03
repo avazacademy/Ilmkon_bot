@@ -46,6 +46,17 @@ if GROUP_ID:
 # Format: postgresql+asyncpg://user:password@host:port/dbname
 # Agar DATABASE_URL berilmagan bo'lsa yoki bo'sh bo'lsa, SQLite ishlatiladi
 # Bu qiymat database/models.py da bazani tanlash uchun ishlatiladi
-DATABASE_URL = os.getenv("DATABASE_URL")
+_db_url = os.getenv("DATABASE_URL")
+# Railway va boshqa platformalar postgresql:// formatida URL beradi,
+# lekin async SQLAlchemy postgresql+asyncpg:// talab qiladi
+if _db_url:
+    if _db_url.startswith("postgresql://"):
+        DATABASE_URL = _db_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+    elif _db_url.startswith("postgres://"):
+        DATABASE_URL = _db_url.replace("postgres://", "postgresql+asyncpg://", 1)
+    else:
+        DATABASE_URL = _db_url
+else:
+    DATABASE_URL = None
 
 # Agar boshqa sozlamalar kerak bo'lsa shu yerga qo'shing
